@@ -19,6 +19,13 @@ function copyToClipboard(){
     alert('Copied to clipboard');
 }
 
+function replaceAddressNewLineChars(string){
+    var str = "\n";
+    var newStr = "\\n";
+    var regExp = new RegExp(str, 'g');
+    return string.replace(regExp, newStr);
+}
+
 function formSimClaimConsoleCommands(){ 
 var test = $(this).closest("#testSelect").val();
 var json = data[test];
@@ -36,7 +43,7 @@ var formArray = [];
             var htmlObject = '';
             if(!!arkey && arkey !== "false"){
                 htmlObject = (key === "box-32" || key === "box-33" ) ? " textarea" : " input";
-                arkey = ((key === "box-32" || key === "box-33" )) ? arkey.replace("\n", " ").split("|")[0] : arkey.split("\n")[0];
+                arkey = ((key === "box-32" || key === "box-33" )) ? replaceAddressNewLineChars(arkey).split("|")[0] : arkey.split("\n")[0];
                 action += "$('#form"+ (i+1) +"').find('#"+ key + htmlObject + "')";
                 if(arkey === "true"){
                     action += ".attr('checked','checked');";

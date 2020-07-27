@@ -31,11 +31,12 @@ var test = $(this).closest("#testSelect").val();
 var json = data[test];
 var result = "";
 
-var formArray = [];
 
-    for(var i = 0; i < 2; i++){
-
+for(var i = 0; i < 2; i++){
+    
+        var formArray = [];
         formArray.push(Object.entries(json)[i][1]);
+        console.log(formArray);
 
         for(var key in formArray[0]){
             var arkey = formArray[0][key];
@@ -50,7 +51,7 @@ var formArray = [];
                 } else {
                     action += ".val('"+ arkey +"');";
                 }
-                console.log(action);
+                //console.log(action);
                 result += action + "\n";
             }
         }
